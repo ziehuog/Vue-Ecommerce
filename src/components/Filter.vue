@@ -7,45 +7,41 @@
       />
     </div>
     <div>
-      <h3>Categories</h3>
-      <button @click="log">log</button>
+      <h3 class="font-bold">Categories</h3>
+      <button @click="uniqueCategory">log</button>
       <ul>
-        <li v-for="category in arrCategories">{{category}}</li>
+        <li v-for="category in categories">{{ category }}</li>
       </ul>
+    </div>
+    <div>
+      <h3 class="font-bold">Colors</h3>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapMutations, mapState } from "vuex";
 
 export default {
-  data() {
-    return {
-      arrCategories: [],
-    };
-  },
   computed: {
+    ...mapState(['categories']),
     ...mapGetters(["DATA"]),
   },
   methods: {
+    ...mapMutations(['setCategories']),
     uniqueCategory() {
-      const uniqueCategories = this.DATA?.filter(
+        
+        const uniqueCategories = this.DATA?.filter(
           (value, index, self) =>
             self.findIndex((item) => item.category === value.category) === index
-        )
-        .map((item) => item.category);
-
-        console.log(uniqueCategories)
+        ).map((item) => item.category)
+      
+      this.setCategories(uniqueCategories)
     },
-    log(){
-        console.log(this.arrCategories)
-    }
+    
   },
   mounted() {
     this.uniqueCategory();
   },
 };
 </script>
-
-<style lang="scss" scoped></style>
