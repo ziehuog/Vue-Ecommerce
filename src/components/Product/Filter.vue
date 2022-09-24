@@ -8,7 +8,7 @@
     </div>
     <div>
       <h3 class="font-bold">Categories</h3>
-      <button @click="uniqueCategory">log</button>
+      <!-- <button @click="uniqueCategory">log</button> -->
       <ul>
         <li v-for="category in categories">{{ category }}</li>
       </ul>
@@ -30,13 +30,11 @@ export default {
   methods: {
     ...mapMutations(['setCategories']),
     uniqueCategory() {
-        
-        const uniqueCategories = this.DATA?.filter(
-          (value, index, self) =>
+      const arrCategories = this.DATA?.filter(
+        (value, index, self) =>
             self.findIndex((item) => item.category === value.category) === index
-        ).map((item) => item.category)
-      
-      this.setCategories(uniqueCategories)
+        ).map((item) => item.category);
+      this.setCategories(arrCategories)
     },
     
   },

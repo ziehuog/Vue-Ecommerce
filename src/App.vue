@@ -1,12 +1,8 @@
 <script setup>
-import ProductsPage from './views/ProductsPage.vue';
-import Navbar from './components/Navbar.vue';
-
+import Navbar from "./components/Navbar.vue";
 </script>
 
 <template>
-  <Navbar/>
+  <Navbar />
   <RouterView></RouterView>
-  <!-- <ProductsPage/> -->
 </template>
-

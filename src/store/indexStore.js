@@ -4,18 +4,16 @@ export default {
     state() {
       return {
         data: [],
-        categories: []
+        categories: [],
+        loading: false
       };
     },
     mutations: {
       setData(state, data) {
         state.data = data;
       },
-      setCategories(state) {
-        state.categories = this.DATA?.filter(
-          (value, index, self) =>
-            self.findIndex((item) => item.category === value.category) === index
-        ).map((item) => item.category);
+      setCategories(state, data) {
+        state.categories = data; 
       },
     },
     actions: {
@@ -29,6 +27,16 @@ export default {
           console.log(error);
         }
       },
+      setUnique(){
+        const arrCategories = this.data?.filter(
+          (value, index, self) =>
+              self.findIndex((item) => item.category === value.category) === index
+          ).map((item) => item.category);
+
+          commit('setCategories',arrCategories)
+        // this.setCategories(arrCategories)
+      // }
+      }
     },
   
     getters: {

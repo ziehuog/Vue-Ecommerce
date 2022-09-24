@@ -15,10 +15,12 @@
 
 <script>
 import { mapActions, mapMutations, mapState } from "vuex";
+//component
 import PathPage from "../components/PathPage.vue";
-import Filter from "../components/Filter.vue";
-import Sort from "../components/Sort.vue";
-import ProductList from "../components/ProductList.vue";
+import Filter from "../components/Product/Filter.vue";
+import Sort from "../components/Product/Sort.vue";
+import ProductList from "../components/Product/ProductList.vue";
+
 export default {
   components: { PathPage, Filter, Sort, ProductList },
   computed: {
@@ -27,14 +29,25 @@ export default {
   methods: {
     ...mapActions(["fetchData"]),
     ...mapMutations(['setCategories']),
+    
+    //fetch data
     fetchProduct() {
       this.fetchData();
-      this.setCategories();
+      // this.setCategories();
       
     },
+    setUnique(){
+      const arrCategories = this.data?.filter(
+        (value, index, self) =>
+            self.findIndex((item) => item.category === value.category) === index
+        ).map((item) => item.category);
+      this.setCategories(arrCategories)
+    }
+
   },
   mounted() {
     this.fetchProduct();
+    this.setUnique()
   },
 };
 </script>
