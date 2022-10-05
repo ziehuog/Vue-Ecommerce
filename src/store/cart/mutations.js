@@ -1,13 +1,14 @@
 export default {
     addToCart(state, payload){
-        const itemIndex = state.cartStore.findIndex((item) => item.id === action.payload.id);
+        const itemIndex = state.cartStore.findIndex((item) => item.id === payload.id);
 
       if (itemIndex !== -1) {
-        state.cartStore[itemIndex].cartQuantity += 1;
+        state.quantity += 1;
       } else {
         const tempProduct = {
-          ...action.payload,
-          cartQuantity: 1
+          quantity: 1,
+          cartStore: {... payload}
+
         };
         state.cartStore.push(tempProduct);
       }

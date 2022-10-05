@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="flex justify-center " >
-      <a-spin v-if="DATA.length === 0" tip="Loading..." size="large"/>
+      <!-- <a-spin v-if="DATA.length === 0" tip="Loading..." size="large"/> -->
     </div>
     <div class="grid grid-cols-3 gap-3 px-4">
       <ProductItem

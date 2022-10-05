@@ -25,6 +25,7 @@
             class="px-3 text-[25px] text-white"
             icon="fa-solid fa-cart-arrow-down"
           />
+          <span>{{cart/quantity}}</span>
         </router-link>
       </div>
     </div>
@@ -32,6 +33,19 @@
 </template>
 
 <script>
-export default {};
+  import { mapGetters } from 'vuex';
+export default {
+  computed: {
+    ...mapGetters(['cart/quantity'])
+  },
+  methods: {
+    log(){
+      console.log(cart/quantity)
+    }
+  },
+  mounted(){
+    log()
+  }
+};
 </script>
 

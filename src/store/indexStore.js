@@ -1,6 +1,10 @@
 import axios from "axios";
+import cart from "./cart/cart.js";
 
 export default {
+  modules: {
+    cart: cart,
+  },
     state() {
       return {
         data: [],
